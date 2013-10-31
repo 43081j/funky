@@ -3,6 +3,12 @@ funky.js
 
 **funky.js** is a library used to add some funky effects and other transformations to webcam media using WebRTC.
 
+**TODO**
+
+* Add a 'doodle' effect allowing the user to draw on the video
+* Add a save-as feature to save a snapshot
+* Sprite-like images overlaying the video
+
 Demo
 ===
 
