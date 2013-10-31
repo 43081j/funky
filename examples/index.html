@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Funky.js</title>
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+			html, body {
+				margin:0;
+				padding:0;
+				height:100%;
+				font-family: 'Roboto Slab', serif;
+				font-size:14px;
+			}
+			.sidebar {
+				height:100%;
+				width:300px;
+				box-sizing:border-box;
+				color:#444;
+				background:#EEE;
+			}
+			.sidebar h1, .sidebar h4 {
+				font-weight:normal;
+				margin:0;
+				padding:10px 6px;
+				background: linear-gradient(to bottom, #A12E4D 0, #721A32 100%);
+				border-bottom:1px solid #494949;
+				color:#FFF;
+			}
+			.sidebar h1 {
+				padding:15px 6px;
+			}
+			.sidebar p {
+				padding:0px 15px;
+			}
+			.sidebar ul {
+				list-style:none;
+				margin:10px 10px;
+				padding:0px;
+			}
+			.sidebar ul > li {
+				display:block;
+				padding:6px;
+				cursor: pointer;
+				background: #EEE;
+				border: 1px solid #999;
+				border-radius: 4px;
+				margin-top:5px;
+			}
+			.sidebar ul > li.first-child {
+				margin-top: none;
+			}
+			.sidebar ul > li.active {
+				background:#DEF8D6;
+			}
+			.main {
+				height:100%;
+				width: calc(100% - 300px);
+				background:#191919;
+			}
+			.cf:before, .cf:after {
+				content: "";
+				display: table;
+			}
+			.cf:after {
+				clear:both;
+			}
+			.left {
+				float:left;
+			}
+			.right {
+				float:right;
+			}
+			#funky {
+				width:100%;
+				height:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="left sidebar">
+			<h1>Funky.js</h1>
+			<p><strong>funky.js</strong> adds funky effects to your webcam video directly in your browser.</p>
+			<h4>Effects</h4>
+			<ul>
+				<li data-effect="Negative">Negative</li>
+				<li data-effect="VerticalFlip">Vertical Flip</li>
+				<li data-effect="VerticalMirror">Vertical Mirror</li>
+				<li data-effect="EdgeDetection">Edge Detection</li>
+				<li data-effect="Posterize">Posterize</li>
+				<li data-effect="Sepia">Sepia</li>
+				<li data-effect="RandomOffset">Scramble</li>
+				<li data-effect="EdgeDetectionAlt">Edge Detection (2)</li>
+				<li data-effect="ScanLines">Scan Lines</li>
+			</ul>
+			<h4>Tools</h4>
+			<p>Coming soon...</p>
+		</div>
+		<div class="left main">
+			<div id="funky"></div>
+		</div>
+		<div class="cf"></div>
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="../dist/funky.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var funk = new funky('funky');
+				funk.on('error', function(e) {
+					console.log(e);
+				});
+				$('.sidebar *[data-effect]').click(function(e) {
+					e.preventDefault();
+					var effect = $(this).attr('data-effect');
+					if(effect.toLowerCase() in funk.processes) {
+						funk.removeProcess(effect.toLowerCase());
+						$(this).toggleClass('active', false);
+					} else {
+						funk.process(effect.toLowerCase(), funk['effect' + effect]);
+						$(this).toggleClass('active', true);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
