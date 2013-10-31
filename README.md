@@ -6,7 +6,7 @@ funky.js
 Demo
 ===
 
-A demo is hosted [here](https://43081j.github.io/funky/).
+A demo is hosted [here](http://43081j.github.io/funky/).
 
 Example
 ===
