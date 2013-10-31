@@ -24,6 +24,49 @@ Example
 </script>
 ```
 
+Built-in Effects
+===
+
+**funky.js** has several built-in effects which may be used like so:
+
+```javascript
+var funk = new funky('container');
+funk.process(funk.effectNegative);
+```
+
+effectNegative
+: add a negative effect to the video
+effectVerticalFlip
+: flip the video vertically
+effectVerticalMirror
+: mirror the video across the y-axis
+effectEdgeDetection
+: basic edge detection
+effectPosterize
+: give a poster-like effect
+effectSepia
+: alter colours to the sepia tone
+effectRandomOffset
+: give a scrambled effect on the pixels
+effectEdgeDetectionAlt
+: a better edge detection algorithm
+effectScanLines
+: introduce scan lines onto the video
+
+Custom Effects
+===
+
+To create your own effects, simply pass a function to the `process` method and it will be called every time a draw occurs.
+
+```javascript
+var funk = new funky('container');
+funk.process(function(image, callback) {
+	// image is an ImageData instance, alter it as needed
+	// image.data contains your pixels, [r, g, b, a, r, g, b, a, ...]
+	// callback must be called when you are finished processing the data
+});
+```
+
 License
 ===
 
