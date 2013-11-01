@@ -3,6 +3,8 @@ funky.js
 
 **funky.js** is a library used to add some funky effects and other transformations to webcam media using WebRTC and CSS filters (aka shaders).
 
+Currently, Firefox does *not* provide full support for the `filter` property whereas Chrome does. For this reason, the Negative and Sepia effects will not function correctly unless using Chrome.
+
 **TODO**
 
 * Add a 'doodle' effect allowing the user to draw on the video
