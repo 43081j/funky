@@ -1,7 +1,7 @@
 funky.js
 ===
 
-**funky.js** is a library used to add some funky effects and other transformations to webcam media using WebRTC.
+**funky.js** is a library used to add some funky effects and other transformations to webcam media using WebRTC and CSS filters (aka shaders).
 
 **TODO**
 
@@ -26,7 +26,7 @@ Example
 		console.log(e);
 	});
 	// Add a negative effect
-	funk.process(funk.effectNegative);
+	funk.effectNegative(true);
 </script>
 ```
 
@@ -37,8 +37,10 @@ Built-in Effects
 
 ```javascript
 var funk = new funky('container');
-funk.process(funk.effectNegative);
+funky.effectNegative(true);
 ```
+
+Where `true` enables the effect and `false` disables it.
 
 * effectNegative
     * add a negative effect to the video
@@ -62,11 +64,11 @@ funk.process(funk.effectNegative);
 Custom Effects
 ===
 
-To create your own effects, simply pass a function to the `process` method and it will be called every time a draw occurs.
+To create your own effects, simply pass a function to the `draw` event and it will be called every time a draw occurs.
 
 ```javascript
 var funk = new funky('container');
-funk.process(function(image, callback) {
+funk.on('draw', function(image, callback) {
 	// do your processing here
 });
 ```
@@ -74,6 +76,20 @@ funk.process(function(image, callback) {
 `image` is an `ImageData` instance, you may interact with the pixels directly using `image.data`, which is in the form `[r, g, b, a, r, g, b, a, ...]`.
 
 `callback` **must** be called when you are finished processing the pixels so **funky.js** knows to continue with drawing.
+
+`this` is the **funky.js** instance.
+
+Methods
+===
+
+* `on(event, callback)` Hook a callback into an event
+* `off(event, callback)` Remove a callback from an event
+
+Events
+===
+
+* `draw` Called every time a draw occurs, `(image, callback)` will be passed to your callback
+* `error` Called every time an error occurs, `(error)` will be passed which contains a `code` property
 
 License
 ===

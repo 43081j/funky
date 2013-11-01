@@ -95,7 +95,9 @@
 				<li data-effect="ScanLines">Scan Lines</li>
 			</ul>
 			<h4>Tools</h4>
-			<p>Coming soon...</p>
+			<ul>
+				<li data-effect="Doodle">Doodle</li>
+			</ul>
 		</div>
 		<div class="left main">
 			<div id="funky"></div>
@@ -111,14 +113,10 @@
 				});
 				$('.sidebar *[data-effect]').click(function(e) {
 					e.preventDefault();
-					var effect = $(this).attr('data-effect');
-					if(effect.toLowerCase() in funk.processes) {
-						funk.removeProcess(effect.toLowerCase());
-						$(this).toggleClass('active', false);
-					} else {
-						funk.process(effect.toLowerCase(), funk['effect' + effect]);
-						$(this).toggleClass('active', true);
-					}
+					var effect = $(this).attr('data-effect'),
+						hasClass = $(this).hasClass('active');
+					funk['effect' + effect](!hasClass);
+					$(this).toggleClass('active', !hasClass);
 				});
 			});
 		</script>
