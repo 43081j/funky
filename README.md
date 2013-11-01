@@ -19,7 +19,7 @@ Example
 
 ```html
 <div id="funky"></div>
-<script src="../dist/funky.js"></script>
+<script src="funky.min.js"></script>
 <script type="text/javascript">
 	var funk = new funky('funky');
 	funk.on('error', function(e) {
@@ -89,7 +89,7 @@ Events
 ===
 
 * `draw` Called every time a draw occurs, `(image, callback)` will be passed to your callback
-* `error` Called every time an error occurs, `(error)` will be passed which contains a `code` property
+* `error` Called every time an error occurs, `(error)` will be passed which contains an `error.code` property
 
 License
 ===
