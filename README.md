@@ -63,7 +63,7 @@ Where `true` enables the effect and `false` disables it.
 * effectScanLines
     * introduce scan lines onto the video
 * effectRgbshifting
-    * Shifts rgb colors to left and right
+    * Shifts RGB colors to left and right
 
 Custom Effects
 ===
