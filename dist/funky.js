@@ -427,6 +427,71 @@
 	};
 
 	/*
+	 * RGB Shifting effect [by pooyarm]
+	 */
+	funky.prototype.effectRgbshifting = function(enabled){
+		var rgbshifting = function(image, callback) {
+			var imageX = 0;
+			var imageY = 0;
+			var imageWidth = this.videoBound.width;
+			var imageHeight = this.videoBound.height;
+
+			var _radius = parseInt(imageWidth * 1.6 / 100);
+
+			var Original 		= image;
+			var OriginalData 	= image.data;
+			var PlusData		= new Array();
+			var MinusData		= new Array();
+
+			for(var y = 0; y < imageHeight; y++) {
+				for(var x = 0; x < imageWidth; x++) {
+					var index 		= ((imageWidth * y) + x ) * 4;
+
+					var PlusIndex	= ((imageWidth * y) + (x + _radius)) * 4;
+					var MinusIndex	= ((imageWidth * y) + (x + _radius * -1)) * 4;
+
+					PlusData[PlusIndex]		= OriginalData[index];
+					PlusData[PlusIndex + 1]	= OriginalData[index + 1];
+					PlusData[PlusIndex + 2]	= OriginalData[index + 2];
+					PlusData[PlusIndex + 3]	= OriginalData[index + 3];
+
+					MinusData[MinusIndex]		= OriginalData[index];
+					MinusData[MinusIndex + 1]	= OriginalData[index + 1];
+					MinusData[MinusIndex + 2]	= OriginalData[index + 2];
+					MinusData[MinusIndex + 3]	= OriginalData[index + 3];
+				}
+			}
+
+			for(var i = 0, n = OriginalData.length; i < n; i += 4) {
+				if(typeof PlusData[i] != 'undefined')
+				{
+					OriginalData[i] 	= PlusData[i];
+					OriginalData[i + 1] = PlusData[i + 1] * 0.5 + OriginalData[i + 1] * 0.5;
+					OriginalData[i + 2] = PlusData[i + 2];
+				}
+
+				if(typeof MinusData[i] != 'undefined')
+				{
+					OriginalData[i] 	= MinusData[i] * 0.5 + OriginalData[i] * 0.5;
+					OriginalData[i + 1] = OriginalData[i + 1];
+					OriginalData[i + 2] = MinusData[i + 2];
+				}
+
+				OriginalData[i + 3] = 255;
+			}
+			
+			//image.data = OriginalData;
+			callback();
+		}
+		if(enabled) {
+			this.on('draw', rgbshifting);
+			this._effectRgbshifting = this.events['draw'].length - 1;
+		} else {
+			this.off('draw', this.events['draw'][this._effectRgbshifting]);
+		}
+	};
+
+	/*
 	 * Doodle TODO
 	 */
 	funky.prototype.effectDoodle = function(enabled) {
