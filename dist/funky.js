@@ -6,7 +6,7 @@
 	/*
 	 * getUserMedia
 	 */
-	navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || naviagor.msGetUserMedia);
+	navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 	/*
 	 * Funky
 	 */
