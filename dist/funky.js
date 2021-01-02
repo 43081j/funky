@@ -111,9 +111,11 @@
 			function(stream) {
 				if(navigator.mozGetUserMedia) {
 					self.video.mozSrcObject = stream;
+				} else if (typeof self.video.srcObject === "object") {
+					self.video.srcObject = stream;
 				} else {
 					var url = window.URL || window.webkitURL;
-					self.video.src = url.createObjectURL(stream);
+					self.video.srcObject = stream;
 				}
 				self.video.play();
 			},
