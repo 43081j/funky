@@ -115,7 +115,7 @@
 					self.video.srcObject = stream;
 				} else {
 					var url = window.URL || window.webkitURL;
-					self.video.srcObject = stream;
+					self.video.src = url.createObjectURL(stream);
 				}
 				self.video.play();
 			},
