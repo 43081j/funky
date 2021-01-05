@@ -14,7 +14,7 @@ Currently, Firefox does *not* provide full support for the `filter` property whe
 Demo
 ===
 
-A demo is hosted [here](http://43081j.github.io/funky/).
+A demo is hosted [here](//43081j.github.io/funky/).
 
 Example
 ===
